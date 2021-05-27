@@ -1,0 +1,12 @@
+.imgStyle {
+  position: absolute; /* or fixed */
+  top: 50%;
+  left: 58%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 700px) {
+  .imgStyle {
+    display: none;
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Darisly",
+  "version": "1.0.0",
+  "description": "Darisly App Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "jest --watchAll --verbose --runInBand --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://alaadarwish@bitbucket.org/xDarisly/darsily.git"
+  },
+  "author": "Alaa Darwish",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/xDarisly/darsily#readme",
+  "dependencies": {
+    "@hapi/joi": "^15.1.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "config": "^3.3.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-rate-limit": "^5.2.3",
+    "helmet": "^4.4.1",
+    "joi-objectid": "^3.0.1",
+    "jshint": "^2.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-simple": "^0.5.6",
+    "mkdirp": "^1.0.4",
+    "mongoose": "^5.11.13",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "save": "^2.4.0",
+    "uuid": "^8.3.2",
+    "vimeo": "^2.1.1",
+    "winston": "^3.3.3",
+    "ws": "^7.4.4"
+  }
+}

@@ -1,0 +1,27 @@
+.main-container {
+  height: 100%;
+
+  > div:after {
+    content: "";
+    // background-image: url('../../assets/img/request-bg.png');
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    opacity: 0.1;
+    z-index: -9;
+  }
+}
+.padding20px {
+  padding: 20px;
+  padding-left: 150px;
+}
+.mainContainerStyle {
+  // background-color: #f5f5f5;
+  min-height: 100vh;
+}
+@media screen and (max-width: 700px) {
+  .padding20px {
+    padding: 20px;
+    padding-left: 10px;
+  }
+}

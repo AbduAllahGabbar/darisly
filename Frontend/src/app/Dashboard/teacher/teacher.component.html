@@ -1,0 +1,200 @@
+<h4 class="text-center">Tutors Management</h4>
+<div class="row">
+  <div class="col-sm-6" *ngFor="let teacher of allTeachers">
+    <div class="card m-2 cardStyle">
+      <div class="card-body text-center">
+        <h5 class="card-title">
+          {{ teacher.firstName }} {{ teacher.lastName }}
+        </h5>
+        <p class="card-text">{{ teacher.email }}</p>
+        <p class="card-text">{{ teacher.phoneNumber }}</p>
+        <p class="card-text">
+          Approved : {{ teacher.approved }}
+          <a
+            *ngIf="!teacher.approved"
+            (click)="activateTeacher(teacher)"
+            class="activateOrDeactivate"
+            >Activate</a
+          >
+          <a
+            *ngIf="!teacher.approved"
+            class="deleteStyle"
+            (click)="deleteTeacher(teacher)"
+          >
+            Delete
+          </a>
+          <a
+            *ngIf="teacher.approved"
+            class="activateOrDeactivate"
+            (click)="deactivateTeacher(teacher)"
+          >
+            DeActivate
+          </a>
+        </p>
+        <button
+          type="button"
+          class="btn btnColor m-2"
+          (click)="viewTeacherDetails(teacher, detailsModal)"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #detailsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Tutor Details</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="teacher.firstName"
+            readonly
+          />
+        </div>
+        <div class="form-group col-4">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="teacher.lastName"
+            readonly
+          />
+        </div>
+        <div class="form-group col-4">
+          <label for="phoneNumber">Mobile</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phoneNumber"
+            name="phoneNumber"
+            [(ngModel)]="teacher.phoneNumber"
+            readonly
+          />
+        </div>
+        <div class="form-group col-8">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="teacher.email"
+            readonly
+          />
+        </div>
+        <div class="form-group col-4">
+          <label for="gender">Gender</label>
+          <input
+            type="text"
+            class="form-control"
+            id="gender"
+            name="gender"
+            [(ngModel)]="teacher.gender"
+            readonly
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="specialization">Specialization</label>
+          <input
+            type="text"
+            class="form-control"
+            id="specialization"
+            name="specialization"
+            [(ngModel)]="teacher.specialization"
+            readonly
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="nationality">Nationality</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nationality"
+            name="nationality"
+            [(ngModel)]="teacher.nationality"
+            readonly
+          />
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="frontIdCard">Front Id Card</label>
+          <a
+            class="imgStyle"
+            (click)="viewImage('Front Id Card', teacher.frontIdCard)"
+          >
+            <i class="fa fa-image"></i> View</a
+          >
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="backIdCard">Back Id Card</label>
+          <a
+            class="imgStyle"
+            (click)="viewImage('Back Id Card', teacher.backIdCard)"
+          >
+            <i class="fa fa-image"></i> View</a
+          >
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="certificates">Certificates</label>
+          <a
+            class="imgStyle"
+            (click)="viewImage('Certificates', teacher.certificates[0])"
+          >
+            <i class="fa fa-image"></i> View</a
+          >
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="personalImage">Personal Image</label>
+          <a
+            class="imgStyle"
+            (click)="viewImage('Personal Image', teacher.personalImage)"
+          >
+            <i class="fa fa-image"></i> View</a
+          >
+          <a class="imgStyle" (click)="changeImage()">
+            <i class="fa fa-image"></i> Change</a
+          >
+          <input
+            *ngIf="showChangeImageBtn"
+            type="file"
+            class="form-control-file"
+            id="fileSelected"
+            (change)="choseFile($event, teacher)"
+          />
+        </div>
+        <div class="form-group col-12">
+          <label>Approved : </label>
+          {{ teacher.approved }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-dark"
+      (click)="modal.close('Save click')"
+    >
+      Ok
+    </button>
+  </div>
+</ng-template>
+<ngx-spinner type="ball-fussion" color="#56ccf2"></ngx-spinner>

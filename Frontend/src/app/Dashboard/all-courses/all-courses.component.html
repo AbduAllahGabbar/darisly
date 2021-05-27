@@ -1,0 +1,80 @@
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a
+      class="nav-link active"
+      id="nav-home-tab"
+      data-toggle="tab"
+      href="#nav-home"
+      role="tab"
+      aria-controls="nav-home"
+      aria-selected="true"
+      ><i class="fa fa-graduation-cap"></i> Courses</a
+    >
+    <a
+      class="nav-link"
+      id="nav-contact-tab"
+      data-toggle="tab"
+      href="#nav-contact"
+      role="tab"
+      aria-controls="nav-contact"
+      aria-selected="false"
+    >
+      <i class="fa fa-eye"></i> Previews</a
+    >
+    <a
+      class="nav-link"
+      id="nav-trending-tab"
+      data-toggle="tab"
+      href="#nav-trending"
+      role="tab"
+      aria-controls="nav-trending"
+      aria-selected="false"
+    >
+      <i class="fa fa-area-chart"></i> Trending</a
+    >
+    <a
+      class="nav-link"
+      id="nav-profile-tab"
+      data-toggle="tab"
+      href="#nav-profile"
+      role="tab"
+      aria-controls="nav-profile"
+      aria-selected="false"
+      ><i class="fa fa-trash-o"></i> Deleted Courses</a
+    >
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="nav-home"
+    role="tabpanel"
+    aria-labelledby="nav-home-tab"
+  >
+    <app-course></app-course>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-contact"
+    role="tabpanel"
+    aria-labelledby="nav-contact-tab"
+  >
+    <app-previews></app-previews>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-trending"
+    role="tabpanel"
+    aria-labelledby="nav-trending-tab"
+  >
+    <app-trending></app-trending>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-profile"
+    role="tabpanel"
+    aria-labelledby="nav-profile-tab"
+  >
+    <app-deleted-courses></app-deleted-courses>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  border-radius: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 9px;
+  text-decoration: none;
+  border-radius: 20px;
+}
+
+.sidebar a.active {
+  background-color: #56ccf2;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #1f86a8;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+  .nameStyle {
+    float: right;
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+  .nameStyle {
+    float: right;
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+}
+.nameStyle {
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.hrStyle {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  border-top: 2px solid white !important;
+}
+.logoStyle {
+  width: 150px;
+  margin: -2px 7px;
+}
+.logoutStyle {
+  cursor: pointer;
+}

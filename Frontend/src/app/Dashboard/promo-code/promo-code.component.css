@@ -1,0 +1,21 @@
+.cardStyle {
+  background-color: #f7f7f7 !important;
+}
+.trashDesign {
+  float: right;
+  color: red;
+  cursor: pointer;
+}
+.promoFont {
+  font-size: 21px;
+  font-weight: 600px;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+.marginTop {
+  margin-top: -2px;
+}
+.borderRadius {
+  border-radius: 15px !important;
+}

@@ -1,0 +1,194 @@
+<h4 class="text-center">Packages Management</h4>
+<button
+  type="button"
+  class="btn btn-dark mb-2"
+  data-toggle="modal"
+  data-target="#AddNewPackageModal"
+>
+  Add New Package
+</button>
+<div
+  class="modal fade"
+  id="AddNewPackageModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
+        <button
+          type="button"
+          class="close"
+          #closeButton
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="mb-3">
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="subject">Subject</label>
+              <ng-select
+                [disabled]="true"
+                id="subject"
+                name="subject"
+                [(ngModel)]="package.subjectId"
+              >
+                <ng-option *ngFor="let sub of allSubjects" [value]="sub._id"
+                  >{{ sub.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="form-group col-6">
+              <label for="giftTeacher">Tutor</label>
+              <ng-select
+                [disabled]="true"
+                id="giftTeacher"
+                name="giftTeacher"
+                [(ngModel)]="package.teacherId"
+              >
+                <ng-option
+                  *ngFor="let teacher of allTeachers"
+                  [value]="teacher._id"
+                  >{{ teacher.firstName }} {{ teacher.lastName }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-12">
+              <label for="packageCourse">Course</label>
+              <ng-select
+                id="packageCourse"
+                name="packageCourse"
+                [(ngModel)]="package.course"
+                (change)="changeCourse()"
+              >
+                <ng-option *ngFor="let course of allCourses" [value]="course"
+                  >{{ course.subject }}-{{ course.educationSystem }}-{{
+                    course.grade
+                  }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-12" *ngIf="package.course">
+              <label for="packageChapter">Chapters</label>
+              <ng-select
+                id="packageChapter"
+                name="packageChapter"
+                [(ngModel)]="package.chapter"
+                (change)="changeChapter()"
+              >
+                <ng-option
+                  *ngFor="let chapter of package.course.chapters"
+                  [value]="chapter"
+                  >{{ chapter.name }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-12" *ngIf="package.chapter">
+              <label for="packageLesson">Lessons</label>
+              <ng-select
+                [multiple]="true"
+                id="packageLesson"
+                name="packageLesson"
+                [(ngModel)]="package.packageLessons"
+              >
+                <ng-option
+                  *ngFor="let less of package.chapter.lessons"
+                  [value]="less._id"
+                  >{{ less.name }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-6">
+              <label for="oldPrice">Old Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="oldPrice"
+                name="oldPrice"
+                placeholder="Old Price"
+                [(ngModel)]="package.oldPrice"
+              />
+            </div>
+            <div class="form-group col-6">
+              <label for="newPrice">New Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="newPrice"
+                name="newPrice"
+                placeholder="New Price"
+                [(ngModel)]="package.newPrice"
+              />
+            </div>
+            <div class="form-group col-12">
+              <label for="expiryDate">Expiry Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="expiryDate"
+                name="expiryDate"
+                placeholder="Expiry Date"
+                [(ngModel)]="package.expiryDate"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-dark m-1" (click)="save()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table table-hover table-responsive-sm" id="table">
+  <thead class="headColor">
+    <tr class="text-center">
+      <th>Subject</th>
+      <th>Teacher</th>
+      <th>Grade</th>
+      <th>Education System</th>
+      <th>Lessons</th>
+      <th>Old Price</th>
+      <th>New Price</th>
+      <th>Expiry Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pack of allPackages" class="text-center">
+      <td>{{ pack.subject }}</td>
+      <td>{{ pack.teacherFirstName }} {{ pack.teacherLastName }}</td>
+      <td>{{ pack.grade }}</td>
+      <th>{{ pack.educationSystem }}</th>
+      <td>
+        <ul *ngFor="let item of pack.lessons">
+          <li>{{ item.name }}</li>
+        </ul>
+      </td>
+      <td>{{ pack.oldPrice }}</td>
+      <td>{{ pack.newPrice }}</td>
+      <td>{{ pack.expiryDate | date }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deletePackage(pack)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngx-spinner type="ball-fussion" color="#56ccf2"></ngx-spinner>

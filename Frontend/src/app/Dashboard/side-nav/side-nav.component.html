@@ -1,0 +1,75 @@
+<div class="sidebar">
+  <div class="navbar-brand">
+    <img src="/assets/images/logo.png" class="logoStyle" />
+  </div>
+  <span class="nameStyle pr-2 usernameStyle nameStyle"
+    ><i class="fa fa-user-circle-o"></i> Welcome {{ username }}</span
+  >
+  <hr class="hrStyle" />
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/home']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-tachometer"></i> Dashboard
+    <span class="sr-only">(current)</span></a
+  >
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/admins']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-user-secret"></i> Admins
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/teachers']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-users"></i> Tutors
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/subjects']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-file"></i> Subjects
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/grades']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-user-circle"></i> Grades
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/educationSystems']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-book"></i> Education Systems
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/courses']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-graduation-cap"></i> Courses
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/promotions']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-gift"></i> Promotions
+  </a>
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/codes']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-code"></i> Codes
+  </a>
+  <!--
+  <a
+    class="nav-link"
+    [routerLink]="['/dashboard/payments']"
+    [routerLinkActive]="['active']"
+    ><i class="fa fa-money"></i> Payments
+  </a> -->
+  <hr class="hrStyle" />
+  <a class="logoutStyle" (click)="logout()"
+    ><i class="fa fa-sign-out"></i> Logout
+  </a>
+</div>

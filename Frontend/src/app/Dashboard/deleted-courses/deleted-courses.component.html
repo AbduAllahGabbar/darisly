@@ -1,0 +1,175 @@
+<h4 class="text-center">Deleted Courses Management</h4>
+<div class="row">
+  <div class="col-sm-6" *ngFor="let course of allCourses">
+    <div class="card m-2 cardStyle">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ course.subject }}</h5>
+        <p class="card-text">Grade : {{ course.grade }}</p>
+        <p class="card-text">{{ course.educationSystem }}</p>
+        <p class="card-text">
+          Teacher : {{ course.teacher ? course.name : "Not Assigned" }}
+        </p>
+        <button
+          type="button"
+          class="btn btnColor m-2"
+          (click)="openViewCourseDetailsModal(course, viewCourseDetailsModal)"
+        >
+          View Details
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark m-2"
+          (click)="restoreCourse(course)"
+        >
+          Restore
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #viewCourseDetailsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Course Details</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-12">
+          <img
+            src="{{ selectedCourse.courseIcon }}"
+            width="100%"
+            height="200px"
+            alt="Course Icon"
+          />
+          <p class="card-text font-weight-bold text-center">
+            {{ selectedCourse.subject }} <br />
+            Grade : {{ selectedCourse.grade }} <br />
+            {{ selectedCourse.educationSystem }} <br />
+            Teacher :
+            {{ selectedCourse.teacher ? selectedCourse.name : "Not Assigned" }}
+            <br />
+          </p>
+        </div>
+        <div class="col-md-8 col-12">
+          <div class="card">
+            <div class="card-body">
+              <span class="contentStyle">Content</span>
+              <ng-select
+                name="selectFromChapters"
+                [(ngModel)]="selectFromChapters"
+                (change)="chosenChapter($event)"
+              >
+                <ng-option value="">Search Chapters</ng-option>
+                <ng-option
+                  *ngFor="let chap of clonedSelectedCourse.chapters"
+                  [value]="chap"
+                  >{{ chap.name }}</ng-option
+                >
+              </ng-select>
+              <hr />
+              <div
+                class="accordion"
+                [attr.id]="'accordion_' + i"
+                *ngFor="let chapter of selectedCourse.chapters; let i = index"
+              >
+                <div class="card" *ngIf="chapter.name">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <a
+                        class="chapterTitleStyle"
+                        data-toggle="collapse"
+                        [attr.data-parent]="'#accordion_' + i"
+                        [attr.href]="'#collapseOne_' + i"
+                        >{{ chapter.name }}
+                        <i class="fa fa-sort-down arrowStyle"></i
+                      ></a>
+                    </h2>
+                  </div>
+                  <div
+                    [attr.id]="'collapseOne_' + i"
+                    class="panel-collapse collapse in"
+                  >
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12 lessonDiv"></div>
+                        <div class="col-12">
+                          <div
+                            class="accordion"
+                            [attr.id]="'accordion_Lesson' + idx"
+                            *ngFor="
+                              let lesson of chapter.lessons;
+                              let idx = index
+                            "
+                          >
+                            <div class="card" *ngIf="chapter.name">
+                              <div
+                                class="card-header lessonBackgroundColor"
+                                id="headingOne"
+                              >
+                                <h2 class="mb-0">
+                                  <a
+                                    class="chapterTitleStyle"
+                                    data-toggle="collapse"
+                                    [attr.data-parent]="
+                                      '#accordion_Lesson' + idx
+                                    "
+                                    [attr.href]="'#collapseOne_Lesson' + idx"
+                                    >{{ lesson.name }}
+                                    <i class="fa fa-sort-down arrowStyle"></i
+                                  ></a>
+                                </h2>
+                              </div>
+                              <div
+                                [attr.id]="'collapseOne_Lesson' + idx"
+                                class="panel-collapse collapse in"
+                              >
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-12 lessonDiv"></div>
+                                    <div
+                                      class="col-12"
+                                      *ngIf="
+                                        lesson.items && lesson.items.length > 0
+                                      "
+                                    >
+                                      <div *ngFor="let item of lesson.items">
+                                        {{ item.name }}
+                                        <span class="float-right"> </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-dark"
+      (click)="modal.dismiss('Cross click')"
+    >
+      Ok
+    </button>
+  </div>
+</ng-template>
+<ngx-spinner type="ball-fussion" color="#56ccf2"></ngx-spinner>

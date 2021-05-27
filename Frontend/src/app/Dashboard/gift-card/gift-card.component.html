@@ -1,0 +1,180 @@
+<h4 class="text-center">Gift Card Management</h4>
+<button
+  type="button"
+  class="btn btn-dark mb-2"
+  data-toggle="modal"
+  data-target="#AddNewGiftCardModal"
+>
+  Add New Gift Card
+</button>
+<div
+  class="modal fade"
+  id="AddNewGiftCardModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gift Card Details</h5>
+        <button
+          type="button"
+          class="close"
+          #closeButton
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="mb-3">
+          <div class="form-row">
+            <div class="form-group col-6">
+              <input
+                type="radio"
+                class="mr-2"
+                name="type"
+                id="forAll"
+                value="forAll"
+                autocomplete="off"
+                [(ngModel)]="giftCard.type"
+              />
+              <label for="forAll"> For All</label>
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="radio"
+                class="mr-2"
+                name="type"
+                id="forGroup"
+                value="forGroup"
+                autocomplete="off"
+                [(ngModel)]="giftCard.type"
+              />
+              <label for="forGroup"> For Group</label>
+            </div>
+            <div class="form-group col-6" *ngIf="giftCard.type === 'forGroup'">
+              <label for="subject">Subject</label>
+              <ng-select
+                id="subject"
+                name="subject"
+                [(ngModel)]="giftCard.subjectId"
+              >
+                <ng-option *ngFor="let sub of allSubjects" [value]="sub._id"
+                  >{{ sub.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="form-group col-6" *ngIf="giftCard.type === 'forGroup'">
+              <label for="educationSystem">Education System</label>
+              <ng-select
+                id="educationSystem"
+                name="educationSystem"
+                [(ngModel)]="giftCard.educationSystemId"
+              >
+                <ng-option
+                  *ngFor="let edu of allEducationSystems"
+                  [value]="edu._id"
+                  >{{ edu.name }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-6" *ngIf="giftCard.type === 'forGroup'">
+              <label for="grade">Grade</label>
+              <ng-select id="grade" name="grade" [(ngModel)]="giftCard.gradeId">
+                <ng-option *ngFor="let grad of allGrades" [value]="grad._id"
+                  >{{ grad.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="form-group col-6" *ngIf="giftCard.type === 'forGroup'">
+              <label for="giftTeacher">Tutor</label>
+              <ng-select
+                id="giftTeacher"
+                name="giftTeacher"
+                [(ngModel)]="giftCard.teacherId"
+              >
+                <ng-option
+                  *ngFor="let teacher of allTeachers"
+                  [value]="teacher._id"
+                  >{{ teacher.firstName }} {{ teacher.lastName }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-6">
+              <label for="price">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                placeholder="Price"
+                [(ngModel)]="giftCard.price"
+              />
+            </div>
+            <div class="form-group col-6">
+              <label for="expiryDate">Expiry Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="giftExpiryDate"
+                name="expiryDate"
+                placeholder="Expiry Date"
+                [(ngModel)]="giftCard.expiryDate"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-dark m-1" (click)="save()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table table-hover table-responsive-sm" id="table">
+  <thead class="headColor">
+    <tr>
+      <th>Type</th>
+      <th>Subject</th>
+      <th>Education System</th>
+      <th>Grade</th>
+      <th>Teacher</th>
+      <th>Price</th>
+      <th>Expiry Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let gift of allGiftCards">
+      <td>{{ gift.type }}</td>
+      <td>{{ gift.subjectName }}</td>
+      <td>
+        {{ gift.educationSystem }}
+      </td>
+      <td>{{ gift.grade }}</td>
+      <td>
+        {{ gift.teacherFirstName + " " + gift.teacherLastName }}
+      </td>
+      <td>{{ gift.price }}</td>
+      <td>{{ gift.expiryDate | date }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteGiftCard(gift)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngx-spinner type="ball-fussion" color="#56ccf2"></ngx-spinner>

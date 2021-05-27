@@ -1,0 +1,88 @@
+.cardStyle {
+  /* height: 230px !important; */
+  background-color: #f7f7f7 !important;
+  border-radius: 15px !important;
+}
+.trashDesign {
+  float: right;
+  color: red;
+  cursor: pointer;
+}
+.marginTop {
+  margin-top: -2px;
+}
+.addNewChapter {
+  float: right;
+  font-weight: 600;
+  cursor: pointer;
+  color: #56ccf2;
+}
+.contentStyle {
+  font-size: 18px;
+  font-weight: 600;
+}
+.searchInputStyle {
+  border-radius: 16px;
+  margin-left: 8px;
+}
+.chapterTitleStyle {
+  color: black;
+  font-size: 18px;
+}
+.arrowStyle {
+  float: right;
+  padding-top: 15px;
+}
+.assignTeacher {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.lessonDiv {
+  margin-top: -20px;
+  margin-left: 15px;
+}
+.lessonBackgroundColor {
+  background-color: #eceff1;
+}
+.contentButtons {
+  margin: 0px 15px;
+  border-radius: 20px;
+  padding: 0px 15px;
+}
+.contentIcons {
+  margin: 10px 70px;
+}
+@media screen and (max-width: 40em) {
+  .contentIcons {
+    margin: 5px 45px;
+  }
+  .contentButtons {
+    margin: 0px 10px;
+    border-radius: 20px;
+    padding: 0px 5px;
+  }
+}
+.editContentStyle {
+  color: #013253;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+.deleteContentStyle {
+  color: red;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+.displayNone {
+  display: none;
+}
+.btnColor {
+  background-color: #56ccf2;
+  color: white;
+}
+.liveCheckbox {
+  margin-top: 38px;
+  padding: 0px 30px;
+}
+.redColor {
+  color: red;
+}

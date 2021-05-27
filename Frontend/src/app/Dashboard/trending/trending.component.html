@@ -1,0 +1,86 @@
+<h4 class="text-center">Trending Management</h4>
+<button
+  type="button"
+  class="btn btn-dark mb-2"
+  data-toggle="modal"
+  data-target="#AddNewTrendingModal"
+>
+  Add New Trending
+</button>
+<div
+  class="modal fade"
+  id="AddNewTrendingModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Trending Details</h5>
+        <button
+          type="button"
+          class="close"
+          #closeButton
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="mb-3">
+          <div class="form-row">
+            <div class="form-group col-12">
+              <label for="course">Course</label>
+              <ng-select
+                id="course"
+                name="course"
+                [(ngModel)]="trending.course"
+              >
+                <ng-option *ngFor="let c of allCourses" [value]="c._id"
+                  >{{ c.subject }} - {{ c.educationSystem }} -
+                  {{ c.grade }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-dark m-1" (click)="save()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table table-hover table-responsive-sm" id="table">
+  <thead class="headColor">
+    <tr class="text-center">
+      <th>Course</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trend of allTrending" class="text-center">
+      <td>
+        {{ trend.courseSubject }} - {{ trend.educationSystemName }} -
+        {{ trend.gradeName }}
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteTrending(trend)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngx-spinner type="ball-fussion" color="#56ccf2"></ngx-spinner>
